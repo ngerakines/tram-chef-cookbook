@@ -1,0 +1,22 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-12.04
+    driver:
+      network:
+        - ["private_network", {ip: "10.10.10.5"}]
+  - name: ubuntu-13.10
+    driver:
+      network:
+        - ["private_network", {ip: "10.10.10.5"}]
+
+suites:
+  - name: default
+    run_list:
+      - recipe[tram::default]
+    attributes:
