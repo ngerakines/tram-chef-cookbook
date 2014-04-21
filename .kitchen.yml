@@ -14,9 +14,25 @@ platforms:
     driver:
       network:
         - ["private_network", {ip: "10.10.10.5"}]
+  - name: centos-6.5
+    driver:
+      network:
+        - ["private_network", {ip: "10.10.10.5"}]
 
 suites:
   - name: default
     run_list:
       - recipe[tram::default]
+  - name: centos
+    run_list:
+      - recipe[tram::default]
     attributes:
+    excludes:
+      - ubuntu-12.04
+      - ubuntu-13.10
+  - name: ubuntu
+    run_list:
+      - recipe[tram::default]
+    attributes:
+    excludes:
+      - centos-6.5

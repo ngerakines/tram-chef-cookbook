@@ -16,6 +16,5 @@ end
 
 service "tram" do
   provider Chef::Provider::Service::Upstart
-  supports :restart => true, :status => true
   action [:enable, :start]
 end

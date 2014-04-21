@@ -9,19 +9,24 @@ describe 'tram deployment' do
     its(:content) { should match /\/home\/tram\/tram/ }
   end
 
-  it 'should be running the tram service' do
-    expect(service 'tram').to be_running
-    expect(service 'tram').to be_enabled
+  describe service('tram') do
+    it { should be_enabled }
+    it { should be_running }
+  end
+
+  describe command('curl -v http://localhost:7040/') do
+    its(:stdout) { should match /HTTP\/1.1 404/ }
   end
 
   describe file("/var/log/upstart/tram.log") do
     it { should be_file }
     it { should be_owned_by "root" }
     it { should be_grouped_into "root" }
+    its(:content) { should match /\[martini\] Completed 404 Not Found/ }
   end
 
-  it "is listening on port 3000" do
-    expect(port(3000)).to be_listening
+  describe port(7040) do
+    it { should be_listening }
   end
 
 end

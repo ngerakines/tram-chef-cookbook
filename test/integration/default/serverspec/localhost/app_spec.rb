@@ -2,12 +2,12 @@ require "spec_helper"
 
 describe "tram package" do
 
-  it "should have a tram user" do
-    expect(user "tram").to exist
+  describe user('tram') do
+    it { should exist }
   end
 
-  it "should have a tram group" do
-    expect(group "tram").to exist
+  describe group('tram') do
+    it { should exist }
   end
 
   describe file("/home/tram/tram") do
