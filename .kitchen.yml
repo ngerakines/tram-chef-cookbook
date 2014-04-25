@@ -18,6 +18,11 @@ platforms:
     driver:
       network:
         - ["private_network", {ip: "10.10.10.5"}]
+  - name: centos-5.8
+    driver:
+      box_url: https://dl.dropbox.com/u/17738575/CentOS-5.8-x86_64.box
+      network:
+        - ["private_network", {ip: "10.10.10.5"}]
 
 suites:
   - name: default
@@ -30,9 +35,11 @@ suites:
     excludes:
       - ubuntu-12.04
       - ubuntu-13.10
+      - centos-5.8
   - name: ubuntu
     run_list:
       - recipe[tram::default]
     attributes:
     excludes:
       - centos-6.5
+      - centos-5.8

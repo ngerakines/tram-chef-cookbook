@@ -12,9 +12,11 @@ template "/etc/init/tram.conf" do
   mode 0444
   owner "root"
   group "root"
+  only_if { ::File.exists?("/etc/init/") }
 end
 
 service "tram" do
   provider Chef::Provider::Service::Upstart
   action [:enable, :start]
+  only_if { ::File.exists?("/etc/init/") }
 end
