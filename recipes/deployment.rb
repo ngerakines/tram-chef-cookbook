@@ -7,16 +7,14 @@
 # This project and its contents are open source under the MIT license.
 #
 
-template "/etc/init/tram.conf" do
-  source "tram-upstart.conf.erb"
-  mode 0444
-  owner "root"
-  group "root"
-  only_if { ::File.exists?("/etc/init/") }
+cookbook_file '/etc/init.d/tram' do
+  source 'tram'
+  mode 00777
+  owner 'root'
+  group 'root'
 end
 
-service "tram" do
-  provider Chef::Provider::Service::Upstart
-  action [:enable, :start]
-  only_if { ::File.exists?("/etc/init/") }
+service 'tram' do
+  provider Chef::Provider::Service::Init
+  action [:start]
 end

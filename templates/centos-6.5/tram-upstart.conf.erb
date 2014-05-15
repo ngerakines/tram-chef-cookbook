@@ -1,8 +1,0 @@
-description "tram webapp"
-author "Nick Gerakines, nick@gerakines.net"
-
-start on stopped rc RUNLEVEL=[345]
-stop on runlevel [016]
-
-chdir /home/tram/
-exec su tram -c '/home/tram/tram'
