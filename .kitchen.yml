@@ -14,6 +14,7 @@ platforms:
     driver:
       network:
         - ["private_network", {ip: "10.10.10.5"}]
+        - ["forwarded_port", {guest: 7040, host: 7040}]
   - name: centos-6.5
     driver:
       network:
